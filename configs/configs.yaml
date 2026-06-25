@@ -1,0 +1,21 @@
+path:
+  data_dir: data
+  raw_data: raw
+  processed_data: processed
+  artifacts_dir: artifacts
+  experiment_logs: experiment_logs
+  saved_models: saved_models
+
+model: 
+  random_forests:
+    n_jobs: -1
+    random_state: 42
+    n_estimators: 100
+
+data:
+  tickers: "AAPL"
+  start: "2020-01-01"
+  end: "2025-01-01"
+
+metrics:
+  holding_period: 5
