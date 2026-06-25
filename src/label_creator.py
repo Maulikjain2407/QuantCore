@@ -11,5 +11,3 @@ def create_label():
 
     df["target"]= (df["future_returns"]> 0.01).astype(int)
     df.to_csv(MODEL_DATA_PATH,index=False)
-
-create_label()
