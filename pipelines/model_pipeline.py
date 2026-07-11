@@ -1,7 +1,7 @@
 from src.data_loader import get_data
 from src.data_cleaner import clean_data
-from src.feature_engineering import create_feature
-from src.label_creator import create_label
+from feature_engineer.feature_engineering import create_feature
+from label_creator.label_creator import create_label
 from src.test_train_split import test_train_split
 
 from models.model import train_model
