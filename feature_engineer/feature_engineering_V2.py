@@ -42,3 +42,63 @@ def create_feature():
     df["MACD_Signal"]= df["MACD"].ewn(span=9,adjust=False).mean()
 
     
+    #Rolling STD
+
+    df["rolling_STD"]=df["close"].rolling(1).std()
+
+
+    #Volatility
+
+    #Historical
+
+    df["historical_volatility"]= df["ret_log"].rolling(20).std * np.sqrt(252)
+    
+    #Realised
+
+    df["realised_volatility"] = np.sqrt((df["ret_log"] ** 2).rolling(window=20).sum())
+
+    #Volume change
+
+    df["vol_change"]=df["volumne"].pct_change()
+
+
+    #RSI
+
+    delta=df["close"].diff()
+
+    gain=delta.clip(lower=0)
+    loss=-delta.clip(upper=0)
+
+    avg_gain=gain.ewp(alpha=1/14, adjust=False).mean()
+    avg_loss=loss.ewp(alpha=1/14, adjust=False).mean()
+
+    rs=avg_gain/avg_loss
+
+    df["rsi"]=100-(100/(1+rs))
+
+    #ATR% 
+
+    TR1=df["high"]-df["low"]
+    TR2=(df["high"]-df["close"].shift(1)).abs()
+    TR3=(df["low"]-df["close"].shift(1)).abs()
+
+    TR = pd.concat([TR1, TR2, TR3], axis=1).max(axis=1)
+    
+    ATR=TR.ewm(alpha=1/14,adjust=False).mean()
+
+    df["atr%"]=ATR/df["close"]
+
+    #Body size
+
+    df["body_size"]=(df["close"]-df["open"]).abs()
+
+    # Upper wick and Lower wick
+    
+    df["upper_wick"] = df["high"] - df[["open", "close"]].max(axis=1)
+    df["lower_wick"] = df[["open", "close"]].min(axis=1) - df["low"]
+
+    df=df.dropna()
+
+    df.to_csv(FEATURE_ENGINEER_PATH, index=False)
+
+    return df
