@@ -28,5 +28,8 @@ FEATURE_ENGINEER_PATH= PROCESSED_PATH/f"{TICKER}_featured.csv"
 MODEL_DATA_PATH= PROCESSED_PATH/f"{TICKER}_MODEL_DATA.CSV"
 
 HOLDING_PERIOD=configs["metrics"]["holding_period"]
+TAKE_PROFIT_MULTIPLER=configs["metrics"]["take_profit_multiplier"]
+STOP_LOSS_MULTIPLIER=configs["metrics"]["stop_loss_multiplier"]
+
 
 print(ARTIFACT_DIR)
