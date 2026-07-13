@@ -19,3 +19,5 @@ data:
 
 metrics:
   holding_period: 5
+  stop_loss_multiplier: 1
+  take_profit_multiplier: 2
