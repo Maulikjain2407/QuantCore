@@ -21,7 +21,7 @@ def create_triple_barrier_label(holding_period,take_profit_multiplier,stop_loss_
             labels.append(np.nan)
             future_returns.append(np.nan)
             exit_prices.append(np.nan)
-            exit_dates.append(np.NaT)
+            exit_dates.append(np.nan)
             exit_reasons.append(np.nan)
             holding_days.append(np.nan)
             continue
@@ -84,7 +84,7 @@ def create_triple_barrier_label(holding_period,take_profit_multiplier,stop_loss_
     
     
     df["label"] = labels
-    df["future_return"] = future_returns
+    df["future_returns"] = future_returns
     df["exit_price"] = exit_prices
     df["exit_date"] = exit_dates
     df["exit_reason"] = exit_reasons

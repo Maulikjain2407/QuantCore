@@ -39,19 +39,19 @@ def create_feature():
 
     #MACD & MACD Signal
     df["MACD"]= df["ema_12"]-df["ema_26"]
-    df["MACD_Signal"]= df["MACD"].ewn(span=9,adjust=False).mean()
+    df["MACD_Signal"]= df["MACD"].ewm(span=9,adjust=False).mean()
 
     
     #Rolling STD
 
-    df["rolling_STD"]=df["close"].rolling(1).std()
+    df["rolling_STD"]=df["close"].rolling(20).std()
 
 
     #Volatility
 
     #Historical
 
-    df["historical_volatility"]= df["ret_log"].rolling(20).std * np.sqrt(252)
+    df["historical_volatility"]= df["ret_log"].rolling(20).std()* np.sqrt(252)
     
     #Realised
 
@@ -59,7 +59,7 @@ def create_feature():
 
     #Volume change
 
-    df["vol_change"]=df["volumne"].pct_change()
+    df["vol_change"]=df["volume"].pct_change()
 
 
     #RSI
@@ -69,8 +69,8 @@ def create_feature():
     gain=delta.clip(lower=0)
     loss=-delta.clip(upper=0)
 
-    avg_gain=gain.ewp(alpha=1/14, adjust=False).mean()
-    avg_loss=loss.ewp(alpha=1/14, adjust=False).mean()
+    avg_gain=gain.ewm(alpha=1/14, adjust=False).mean()
+    avg_loss=loss.ewm(alpha=1/14, adjust=False).mean()
 
     rs=avg_gain/avg_loss
 
@@ -96,6 +96,8 @@ def create_feature():
     
     df["upper_wick"] = df["high"] - df[["open", "close"]].max(axis=1)
     df["lower_wick"] = df[["open", "close"]].min(axis=1) - df["low"]
+
+    
 
     df=df.dropna()
 
