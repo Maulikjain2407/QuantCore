@@ -1,6 +1,6 @@
 # QuantCore
 
-QuantCore is a modular quantitative trading research framework built in Python. It provides an end-to-end workflow for collecting market data, generating alpha factors, training machine learning models, and evaluating trading strategies through backtesting.
+QuantCore is a modular quantitative trading research project built in Python. It collects market data, generates alpha factors, trains machine learning models, and evaluates trading strategies through backtesting.
 
 The project is designed as a learning-focused yet extensible foundation for quantitative finance, systematic trading research, and machine learning-driven alpha generation.
 
