@@ -41,7 +41,7 @@ def run_backtest_pipeline():
     )
 
     save(backtest_df, "backtest")
-
+    
     save(metrics, "metrics")
 
     save(
@@ -80,6 +80,26 @@ def run_backtest_pipeline():
     print(
         f"Max Drawdown: "
         f"{metrics['max_drawdown']:.2%}"
+    )
+
+    print(
+        f"Sortino Ratio: "
+        f"{metrics['sortino_ratio']:.2f}"
+    )
+
+    print(
+        f"Calmar Ratio: "
+        f"{metrics['calmar_ratio']:.2f}"
+    )
+
+    print(
+        f"Recovery Factor: "
+        f"{metrics['recovery_factor']:.2f}"
+    )
+
+    print(
+        f"CAGR: "
+        f"{metrics['cagr']:.2%}"
     )
 
 
