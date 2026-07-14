@@ -5,7 +5,7 @@ def eval_model(model,x_test,y_test):
 
     results={
         "Accuracy": accuracy_score(y_test,y_pred),
-        "F1_score": f1_score(y_test,y_pred),
+        "F1_score": f1_score(y_test,y_pred, average="macro"),
         "Confusion_Matrix": confusion_matrix(y_test,y_pred)
     }
 
